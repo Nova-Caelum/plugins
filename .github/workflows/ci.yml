@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "20"
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+      - name: Validate the marketplace
+        run: claude plugin validate --strict .
+      - name: Check every source is pinned, HTTPS and remote
+        run: python3 scripts/check_sources.py
+      - name: Test the source check
+        run: python3 -m unittest tests.test_check_sources
+      - name: Test the pin bump
+        run: python3 -m unittest tests.test_set_tc_sha
