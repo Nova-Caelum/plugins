@@ -4,11 +4,11 @@
   "description": "Nova Caelum's plugins for Claude Code: the Technical Cofounder team, its setup, its research extras, and Hyperspace Engine.",
   "plugins": [
     {"name": "technical-cofounder", "description": "A senior technical team for Claude Code: four agents, guardrails and a worklog, working on Hyperspace Engine's loop.",
-     "source": {"source": "git-subdir", "url": "https://github.com/Nova-Caelum/technical-cofounder.git", "path": "plugins/technical-cofounder", "sha": "3f43327d2309cfd77419e0197bb3f1ffe0afab08"}},
+     "source": {"source": "git-subdir", "url": "https://github.com/Nova-Caelum/technical-cofounder.git", "path": "plugins/technical-cofounder", "sha": "0a2cd0102dfdcf63daaa3ae017b2abe1b147c408"}},
     {"name": "technical-cofounder-setup", "description": "The front door: finds what this computer is missing, installs it, creates your project and walks you through setup.",
-     "source": {"source": "git-subdir", "url": "https://github.com/Nova-Caelum/technical-cofounder.git", "path": "plugins/technical-cofounder-setup", "sha": "3f43327d2309cfd77419e0197bb3f1ffe0afab08"}},
+     "source": {"source": "git-subdir", "url": "https://github.com/Nova-Caelum/technical-cofounder.git", "path": "plugins/technical-cofounder-setup", "sha": "0a2cd0102dfdcf63daaa3ae017b2abe1b147c408"}},
     {"name": "super-novacaelum", "description": "Opt-in research extras for the team: documentation lookup, web research and a cloud browser, on your own keys.",
-     "source": {"source": "git-subdir", "url": "https://github.com/Nova-Caelum/technical-cofounder.git", "path": "plugins/super-novacaelum", "sha": "3f43327d2309cfd77419e0197bb3f1ffe0afab08"}},
+     "source": {"source": "git-subdir", "url": "https://github.com/Nova-Caelum/technical-cofounder.git", "path": "plugins/super-novacaelum", "sha": "0a2cd0102dfdcf63daaa3ae017b2abe1b147c408"}},
     {"name": "hyperspace-engine", "description": "A working loop, a local task graph and a local verifier for Claude Code.",
      "source": {"source": "url", "url": "https://github.com/Nova-Caelum/hyperspace-engine.git", "ref": "hyperspace-engine--v0.1.4", "sha": "ba35bfd90fd31ab99fcf767b20a57db3d4721c11"}}
   ]
