@@ -28,3 +28,5 @@ jobs:
         run: python3 -m unittest tests.test_check_sources
       - name: Test the pin bump
         run: python3 -m unittest tests.test_set_tc_sha
+      - name: Test that the README carries the current install message
+        run: python3 -m unittest tests.test_readme_message

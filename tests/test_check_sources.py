@@ -127,6 +127,20 @@ class CheckSourcesTest(unittest.TestCase):
         bad = {"name": "sourceless", "description": "x"}
         self.assertRefused(self.check(clean_plugins() + [bad]), "sourceless")
 
+    def test_entry_without_a_name_is_refused_by_position_not_a_crash(self):
+        bad = engine()
+        del bad["name"]  # a fifth entry, otherwise fine: it still cannot be reported without a name
+        stderr = self.assertRefused(self.check(clean_plugins() + [bad]), "entry #5")
+        self.assertIn("name", stderr)
+        self.assertNotIn("Traceback", stderr)
+
+    def test_source_without_a_type_is_refused_not_a_crash(self):
+        bad = subdir("typeless")
+        del bad["source"]["source"]  # pinned and HTTPS, but no source type to report
+        stderr = self.assertRefused(self.check(clean_plugins() + [bad]), "typeless")
+        self.assertIn("type", stderr)
+        self.assertNotIn("Traceback", stderr)
+
     def test_every_offending_entry_is_named_and_clean_ones_are_not(self):
         plugins = [
             subdir("fine-one"),
@@ -153,7 +167,11 @@ class CheckSourcesTest(unittest.TestCase):
         bad_json.write_text("{not json", encoding="utf-8")
         no_plugins = self.tmp / "no-plugins.json"
         no_plugins.write_text(json.dumps({"name": "m"}), encoding="utf-8")
-        for label, path in {"missing": self.tmp / "absent.json", "invalid": bad_json, "no-plugins": no_plugins}.items():
+        not_a_list = self.tmp / "not-a-list.json"
+        not_a_list.write_text(json.dumps({"name": "m", "plugins": {"a": 1}}), encoding="utf-8")
+        cases = {"missing": self.tmp / "absent.json", "invalid": bad_json, "no-plugins": no_plugins,
+                 "plugins-not-a-list": not_a_list}
+        for label, path in cases.items():
             with self.subTest(label):
                 result = subprocess.run([sys.executable, str(SCRIPT), str(path)], capture_output=True, text=True)
                 self.assertEqual(result.returncode, 2, msg=result.stderr)
