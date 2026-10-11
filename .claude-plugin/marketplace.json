@@ -10,6 +10,6 @@
     {"name": "super-novacaelum", "description": "Opt-in research extras for the team: documentation lookup, web research and a cloud browser, on your own keys.",
      "source": {"source": "git-subdir", "url": "https://github.com/Nova-Caelum/technical-cofounder.git", "path": "plugins/super-novacaelum", "sha": "5e54e4f58edaf13cad0caa6115048331a97b0667"}},
     {"name": "hyperspace-engine", "description": "A working loop, a local task graph and a local verifier for Claude Code.",
-     "source": {"source": "url", "url": "https://github.com/Nova-Caelum/hyperspace-engine.git", "ref": "hyperspace-engine--v1.0.1", "sha": "a2854bbbf09061d395eaed1091a90bf47b6c0e9c"}}
+     "source": {"source": "url", "url": "https://github.com/Nova-Caelum/hyperspace-engine.git", "ref": "hyperspace-engine--v1.0.2", "sha": "a6e950f05baff983ed5f757e26ef7fc612ae1414"}}
   ]
 }
