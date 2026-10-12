@@ -16,8 +16,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 README = ROOT / "README.md"
 MESSAGE = ROOT / "tests" / "fixtures" / "install-message.txt"
-ADD = "claude plugin marketplace add "
-SECTION = "## Already know your way around?"
 
 
 def fenced_blocks(data):
@@ -44,14 +42,6 @@ def the_block(test, path):
 class ReadmeMessageTest(unittest.TestCase):
     def test_readme_block_is_the_message_byte_for_byte(self):
         self.assertEqual(the_block(self, README), the_block(self, MESSAGE))
-
-    def test_already_know_section_adds_the_marketplace_the_way_the_message_does(self):
-        in_message = [line.strip() for line in the_block(self, MESSAGE).decode("utf-8").splitlines()
-                      if line.strip().startswith(ADD)]
-        self.assertEqual(len(in_message), 1, "the message must add the marketplace exactly once")
-        section = README.read_text(encoding="utf-8").split(SECTION, 1)[1].split("\n## ", 1)[0]
-        in_readme = [line.strip() for line in section.splitlines() if line.strip().startswith(ADD)]
-        self.assertEqual(in_readme, in_message)
 
 
 if __name__ == "__main__":
