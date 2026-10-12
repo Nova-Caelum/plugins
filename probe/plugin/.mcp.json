@@ -1,0 +1,9 @@
+{"mcpServers": {
+  "cmdext": {"command": "${CLAUDE_PLUGIN_ROOT}/bin/launch.cmd", "args": ["${CLAUDE_PLUGIN_ROOT}/server.py", "cmdext"]},
+  "noext": {"command": "${CLAUDE_PLUGIN_ROOT}/bin/launch", "args": ["${CLAUDE_PLUGIN_ROOT}/server.py", "noext"]},
+  "pyext": {"command": "${CLAUDE_PLUGIN_ROOT}/bin/launch.py", "args": ["${CLAUDE_PLUGIN_ROOT}/server.py", "pyext"]},
+  "shext": {"command": "${CLAUDE_PLUGIN_ROOT}/bin/launch.sh", "args": ["${CLAUDE_PLUGIN_ROOT}/server.py", "shext"]},
+  "solo": {"command": "${CLAUDE_PLUGIN_ROOT}/bin/solo", "args": ["${CLAUDE_PLUGIN_ROOT}/server.py", "solo"]},
+  "projarg": {"command": "${CLAUDE_PLUGIN_ROOT}/bin/launch", "args": ["${CLAUDE_PLUGIN_ROOT}/server.py", "projarg", "${CLAUDE_PROJECT_DIR}"]},
+  "ctlpython": {"command": "python", "args": ["${CLAUDE_PLUGIN_ROOT}/server.py", "ctlpython"]}
+}}

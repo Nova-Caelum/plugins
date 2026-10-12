@@ -1,0 +1,38 @@
+# Throwaway probe (TCF-28 fix): which ${CLAUDE_PLUGIN_ROOT} command forms Claude Code starts as a stdio MCP server, per OS and per build (npm vs native).
+name: probe-mcp-spawn
+on: [push, workflow_dispatch]
+jobs:
+  probe:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: npm Claude Code
+        shell: bash
+        run: npm install -g @anthropic-ai/claude-code
+      - name: native Claude Code (Windows)
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: irm https://claude.ai/install.ps1 | iex
+      - name: native Claude Code (POSIX)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: curl -fsSL https://claude.ai/install.sh | bash
+      - name: probe npm build
+        shell: bash
+        run: python probe/run.py claude npm
+      - name: probe native build
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" = "Windows" ]; then B="$USERPROFILE/.local/bin/claude.exe"; else B="$HOME/.local/bin/claude"; fi
+          ls -la "$B" || true
+          python probe/run.py "$B" native
