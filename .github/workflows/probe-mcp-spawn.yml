@@ -29,8 +29,13 @@ jobs:
         run: curl -fsSL https://claude.ai/install.sh | bash
       - name: probe npm build
         shell: bash
-        run: python probe/run.py claude npm
+        run: |
+          G="$(npm prefix -g)"
+          if [ "$RUNNER_OS" = "Windows" ]; then B="$G/claude.cmd"; [ -f "$B" ] || B="$G/claude.exe"; else B="$G/bin/claude"; fi
+          ls -la "$G" | head -20 || true
+          python probe/run.py "$B" npm
       - name: probe native build
+        if: always()
         shell: bash
         run: |
           if [ "$RUNNER_OS" = "Windows" ]; then B="$USERPROFILE/.local/bin/claude.exe"; else B="$HOME/.local/bin/claude"; fi

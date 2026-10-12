@@ -1,2 +1,2 @@
 #!/bin/sh
-exec python3 "$@"
+PROBE_VIA=sh exec python3 "$@"

@@ -13,7 +13,7 @@ try:
         "CLAUDE_PROJECT_DIR": os.environ.get("CLAUDE_PROJECT_DIR"),
         "CLAUDE_PLUGIN_ROOT": os.environ.get("CLAUDE_PLUGIN_ROOT"),
         "CLAUDE_PLUGIN_DATA": os.environ.get("CLAUDE_PLUGIN_DATA"),
-        "PROBE_OUT_seen": bool(os.environ.get("PROBE_OUT")),
+        "PROBE_OUT_seen": bool(os.environ.get("PROBE_OUT")), "PROBE_VIA": os.environ.get("PROBE_VIA"),
         "HOME": os.environ.get("HOME"), "USERPROFILE": os.environ.get("USERPROFILE"),
     }, indent=1), encoding="utf-8")
 except Exception as exc:
