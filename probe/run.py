@@ -9,6 +9,7 @@ import sys
 import tempfile
 from pathlib import Path
 
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 claude, label = sys.argv[1], sys.argv[2]
 claude = shutil.which(claude) or claude
 here = Path(__file__).resolve().parent

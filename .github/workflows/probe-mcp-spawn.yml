@@ -30,9 +30,10 @@ jobs:
       - name: probe npm build
         shell: bash
         run: |
-          G="$(npm prefix -g)"
-          if [ "$RUNNER_OS" = "Windows" ]; then B="$G/claude.cmd"; [ -f "$B" ] || B="$G/claude.exe"; else B="$G/bin/claude"; fi
-          ls -la "$G" | head -20 || true
+          type -a claude || true
+          B="$(type -a -p claude | grep -v '.local/bin' | head -1)"
+          if [ "$RUNNER_OS" = "Windows" ]; then [ -f "$B.cmd" ] && B="$B.cmd"; B="$(cygpath -w "$B")"; fi
+          echo "npm claude: $B"
           python probe/run.py "$B" npm
       - name: probe native build
         if: always()
